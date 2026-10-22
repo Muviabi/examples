@@ -1,0 +1,40 @@
+{
+  "key": "rfm_segments",
+  "name": "RFM customer segments",
+  "description": "Recency, frequency and monetary value of each customer from their orders, each scored 1 to 5, and the segment they fall in: champions, loyal, new, promising, at risk, lost or needs attention.",
+  "contract": {
+    "inputs": [
+      {
+        "name": "orders",
+        "type": "table",
+        "columns": [
+          {"name": "customer", "kind": "string"},
+          {"name": "order_date", "kind": "time"},
+          {"name": "amount", "kind": "float"}
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "customers",
+        "type": "table",
+        "shape": "fixed",
+        "columns": [
+          {"name": "customer", "kind": "string"},
+          {"name": "recency_days", "kind": "integer"},
+          {"name": "frequency", "kind": "integer"},
+          {"name": "monetary", "kind": "float"},
+          {"name": "r_score", "kind": "integer"},
+          {"name": "f_score", "kind": "integer"},
+          {"name": "m_score", "kind": "integer"},
+          {"name": "segment", "kind": "string"}
+        ]
+      }
+    ],
+    "capabilities": [],
+    "form_config": {"type": "object", "properties": {}},
+    "timeout_seconds": 300,
+    "retries": 0,
+    "targets": ["cloud"]
+  }
+}

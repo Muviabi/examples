@@ -1,0 +1,39 @@
+{
+  "key": "price_vs_average",
+  "name": "Price against the average",
+  "description": "Each seller's price (a fuel station, a supplier, a shop) against the average of all sellers of the same product on the same day: the gap, in value and percent, and its rank from the cheapest.",
+  "contract": {
+    "inputs": [
+      {
+        "name": "prices",
+        "type": "table",
+        "columns": [
+          {"name": "ts", "kind": "time"},
+          {"name": "seller", "kind": "string"},
+          {"name": "product", "kind": "string"},
+          {"name": "price", "kind": "float"}
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "prices",
+        "type": "table",
+        "shape": "derived",
+        "derived_from": "prices",
+        "adds": [
+          {"name": "average", "kind": "float"},
+          {"name": "gap", "kind": "float"},
+          {"name": "gap_pct", "kind": "float"},
+          {"name": "rank", "kind": "integer"},
+          {"name": "sellers", "kind": "integer"}
+        ]
+      }
+    ],
+    "capabilities": [],
+    "form_config": {"type": "object", "properties": {}},
+    "timeout_seconds": 300,
+    "retries": 0,
+    "targets": ["cloud"]
+  }
+}

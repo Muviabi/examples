@@ -1,0 +1,36 @@
+{
+  "key": "duplicate_rows",
+  "name": "Duplicate rows",
+  "description": "The rows whose key (the columns you name, or all of them) appears more than once, each with the number of its group of copies and how many copies there are.",
+  "contract": {
+    "inputs": [
+      {"name": "rows", "type": "table"}
+    ],
+    "outputs": [
+      {
+        "name": "duplicates",
+        "type": "table",
+        "shape": "derived",
+        "derived_from": "rows",
+        "adds": [
+          {"name": "duplicate_group", "kind": "integer"},
+          {"name": "copies", "kind": "integer"}
+        ]
+      }
+    ],
+    "capabilities": [],
+    "form_config": {
+      "type": "object",
+      "properties": {
+        "key_columns": {
+          "type": "string",
+          "default": "",
+          "description": "The columns that make a row's key, separated by commas; empty for every column."
+        }
+      }
+    },
+    "timeout_seconds": 300,
+    "retries": 0,
+    "targets": ["cloud"]
+  }
+}

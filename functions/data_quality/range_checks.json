@@ -1,0 +1,49 @@
+{
+  "key": "range_checks",
+  "name": "Values out of range",
+  "description": "The rows whose value in the column you name is missing, below the minimum or above the maximum, each with the problem written out.",
+  "contract": {
+    "inputs": [
+      {
+        "name": "rows",
+        "type": "table",
+        "columns": [
+          {"name_param": "column", "kind": "any"}
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "violations",
+        "type": "table",
+        "shape": "derived",
+        "derived_from": "rows",
+        "adds": [
+          {"name": "problem", "kind": "string"}
+        ]
+      }
+    ],
+    "capabilities": [],
+    "form_config": {
+      "type": "object",
+      "properties": {
+        "column": {
+          "type": "string",
+          "description": "The column to check."
+        },
+        "minimum": {
+          "type": "number",
+          "description": "The smallest acceptable value; empty for no lower limit."
+        },
+        "maximum": {
+          "type": "number",
+          "description": "The largest acceptable value; empty for no upper limit."
+        }
+      },
+      "required": ["column"]
+    },
+    "timeout_seconds": 300,
+    "retries": 0,
+    "targets": ["cloud"]
+  }
+}

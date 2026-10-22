@@ -1,0 +1,64 @@
+{
+  "key": "price_indicators",
+  "name": "Price indicators",
+  "description": "For each instrument's price series: the change from the previous price, a short and a long moving average and which is above (the trend), the annualised volatility and the RSI.",
+  "contract": {
+    "inputs": [
+      {
+        "name": "prices",
+        "type": "table",
+        "columns": [
+          {"name": "ts", "kind": "time"},
+          {"name": "symbol", "kind": "string"},
+          {"name": "price", "kind": "float"}
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "prices",
+        "type": "table",
+        "shape": "derived",
+        "derived_from": "prices",
+        "adds": [
+          {"name": "change_pct", "kind": "float"},
+          {"name": "ma_short", "kind": "float"},
+          {"name": "ma_long", "kind": "float"},
+          {"name": "volatility_pct", "kind": "float"},
+          {"name": "rsi", "kind": "float"},
+          {"name": "trend", "kind": "string"}
+        ]
+      }
+    ],
+    "capabilities": [],
+    "form_config": {
+      "type": "object",
+      "properties": {
+        "short_window": {
+          "type": "integer",
+          "default": 20,
+          "minimum": 2,
+          "maximum": 500,
+          "description": "Prices in the short moving average and in the volatility."
+        },
+        "long_window": {
+          "type": "integer",
+          "default": 50,
+          "minimum": 2,
+          "maximum": 1000,
+          "description": "Prices in the long moving average."
+        },
+        "rsi_periods": {
+          "type": "integer",
+          "default": 14,
+          "minimum": 2,
+          "maximum": 100,
+          "description": "Prices in the RSI."
+        }
+      }
+    },
+    "timeout_seconds": 300,
+    "retries": 0,
+    "targets": ["cloud"]
+  }
+}

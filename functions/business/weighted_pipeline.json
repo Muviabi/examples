@@ -1,0 +1,47 @@
+{
+  "key": "weighted_pipeline",
+  "name": "Weighted sales pipeline",
+  "description": "The open deals by expected closing month and stage: how many, their amount, and their amount weighted by each deal's probability. Won and lost deals are left out.",
+  "contract": {
+    "inputs": [
+      {
+        "name": "deals",
+        "type": "table",
+        "columns": [
+          {"name": "stage", "kind": "string"},
+          {"name": "amount", "kind": "float"},
+          {"name": "probability", "kind": "float"},
+          {"name": "expected_close", "kind": "time"}
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "pipeline",
+        "type": "table",
+        "shape": "fixed",
+        "columns": [
+          {"name": "month", "kind": "time"},
+          {"name": "stage", "kind": "string"},
+          {"name": "deals", "kind": "integer"},
+          {"name": "amount", "kind": "float"},
+          {"name": "weighted_amount", "kind": "float"}
+        ]
+      }
+    ],
+    "capabilities": [],
+    "form_config": {
+      "type": "object",
+      "properties": {
+        "probability_in_percent": {
+          "type": "boolean",
+          "default": true,
+          "description": "On when the probability column holds 0-100, off when it holds 0-1."
+        }
+      }
+    },
+    "timeout_seconds": 300,
+    "retries": 0,
+    "targets": ["cloud"]
+  }
+}

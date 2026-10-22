@@ -1,0 +1,55 @@
+{
+  "key": "demand_forecast",
+  "name": "Weekly demand forecast",
+  "description": "The quantity each product will sell in the coming weeks, from its weekly sales history, with an approximate 95% band. Products with fewer than 8 weeks of history are skipped.",
+  "contract": {
+    "inputs": [
+      {
+        "name": "sales",
+        "type": "table",
+        "columns": [
+          {"name": "date", "kind": "time"},
+          {"name": "product", "kind": "string"},
+          {"name": "quantity", "kind": "float"}
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "forecast",
+        "type": "table",
+        "shape": "fixed",
+        "columns": [
+          {"name": "product", "kind": "string"},
+          {"name": "week", "kind": "time"},
+          {"name": "forecast", "kind": "float"},
+          {"name": "low", "kind": "float"},
+          {"name": "high", "kind": "float"}
+        ]
+      }
+    ],
+    "capabilities": [],
+    "form_config": {
+      "type": "object",
+      "properties": {
+        "horizon_weeks": {
+          "type": "integer",
+          "default": 8,
+          "minimum": 1,
+          "maximum": 52,
+          "description": "How many weeks ahead to forecast."
+        },
+        "season_weeks": {
+          "type": "integer",
+          "default": 52,
+          "minimum": 0,
+          "maximum": 104,
+          "description": "The length of the sales season in weeks; used only with two full seasons of history. 0 for none."
+        }
+      }
+    },
+    "timeout_seconds": 600,
+    "retries": 0,
+    "targets": ["cloud"]
+  }
+}

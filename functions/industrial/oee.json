@@ -1,0 +1,39 @@
+{
+  "key": "oee",
+  "name": "OEE",
+  "description": "Availability, performance, quality and OEE, in percent, of each row of production (a shift, a day, an order), from planned and running minutes, the ideal cycle time and the pieces made and good.",
+  "contract": {
+    "inputs": [
+      {
+        "name": "production",
+        "type": "table",
+        "columns": [
+          {"name": "planned_minutes", "kind": "float"},
+          {"name": "run_minutes", "kind": "float"},
+          {"name": "ideal_cycle_seconds", "kind": "float"},
+          {"name": "total_pieces", "kind": "float"},
+          {"name": "good_pieces", "kind": "float"}
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "production",
+        "type": "table",
+        "shape": "derived",
+        "derived_from": "production",
+        "adds": [
+          {"name": "availability", "kind": "float"},
+          {"name": "performance", "kind": "float"},
+          {"name": "quality", "kind": "float"},
+          {"name": "oee", "kind": "float"}
+        ]
+      }
+    ],
+    "capabilities": [],
+    "form_config": {"type": "object", "properties": {}},
+    "timeout_seconds": 300,
+    "retries": 0,
+    "targets": ["cloud", "edge"]
+  }
+}

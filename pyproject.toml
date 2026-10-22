@@ -1,0 +1,25 @@
+[project]
+name = "muvia-examples"
+version = "1.0.0"
+description = "Example functions for Muvia, each with its contract and a test that runs locally."
+readme = "README.md"
+license = "MIT"
+requires-python = "==3.14.*"
+dependencies = []
+
+[dependency-groups]
+# The libraries Muvia's function runtime ships, at its versions, so a test passing here passes there.
+dev = [
+    "numpy==2.5.3",
+    "pandas==3.0.6",
+    "pyarrow==25.0.1",
+    "scipy==1.18.1",
+    "statsmodels==0.15.0",
+    "pytest==9.1.1",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

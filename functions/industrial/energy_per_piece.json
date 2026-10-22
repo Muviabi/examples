@@ -1,0 +1,35 @@
+{
+  "key": "energy_per_piece",
+  "name": "Energy per piece",
+  "description": "Watt-hours per piece of each period (an hour, a shift, a day), how far it is in percent from the usual (the median), and whether energy was used with no piece made.",
+  "contract": {
+    "inputs": [
+      {
+        "name": "energy",
+        "type": "table",
+        "columns": [
+          {"name": "kwh", "kind": "float"},
+          {"name": "pieces", "kind": "float"}
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "energy",
+        "type": "table",
+        "shape": "derived",
+        "derived_from": "energy",
+        "adds": [
+          {"name": "wh_per_piece", "kind": "float"},
+          {"name": "vs_baseline_pct", "kind": "float"},
+          {"name": "idle_energy", "kind": "boolean"}
+        ]
+      }
+    ],
+    "capabilities": [],
+    "form_config": {"type": "object", "properties": {}},
+    "timeout_seconds": 300,
+    "retries": 0,
+    "targets": ["cloud"]
+  }
+}

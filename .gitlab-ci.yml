@@ -1,0 +1,8 @@
+test:
+  image: ghcr.io/astral-sh/uv:python3.14-bookworm-slim
+  script:
+    - uv sync --locked
+    - uv run pytest -q
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH

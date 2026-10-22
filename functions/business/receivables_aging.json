@@ -1,0 +1,40 @@
+{
+  "key": "receivables_aging",
+  "name": "Receivables aging",
+  "description": "Each customer's open receivables by how long they are past due (not due, 1-30, 31-60, 61-90, over 90 days), at the end of the run's period.",
+  "contract": {
+    "inputs": [
+      {
+        "name": "invoices",
+        "type": "table",
+        "columns": [
+          {"name": "customer", "kind": "string"},
+          {"name": "due_date", "kind": "time"},
+          {"name": "open_amount", "kind": "float"}
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "aging",
+        "type": "table",
+        "shape": "fixed",
+        "columns": [
+          {"name": "customer", "kind": "string"},
+          {"name": "not_due", "kind": "float"},
+          {"name": "days_1_30", "kind": "float"},
+          {"name": "days_31_60", "kind": "float"},
+          {"name": "days_61_90", "kind": "float"},
+          {"name": "over_90", "kind": "float"},
+          {"name": "total", "kind": "float"},
+          {"name": "oldest_days_overdue", "kind": "integer"}
+        ]
+      }
+    ],
+    "capabilities": [],
+    "form_config": {"type": "object", "properties": {}},
+    "timeout_seconds": 300,
+    "retries": 0,
+    "targets": ["cloud"]
+  }
+}

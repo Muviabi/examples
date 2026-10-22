@@ -1,0 +1,32 @@
+{
+  "key": "column_profile",
+  "name": "Column profile",
+  "description": "One row per column of any table: its kind, how many values are missing (and in percent), how many distinct values it has, and its smallest and largest value for numbers and times.",
+  "contract": {
+    "inputs": [
+      {"name": "rows", "type": "table"}
+    ],
+    "outputs": [
+      {
+        "name": "profile",
+        "type": "table",
+        "shape": "fixed",
+        "columns": [
+          {"name": "column", "kind": "string"},
+          {"name": "kind", "kind": "string"},
+          {"name": "rows", "kind": "integer"},
+          {"name": "missing", "kind": "integer"},
+          {"name": "missing_pct", "kind": "float"},
+          {"name": "distinct", "kind": "integer"},
+          {"name": "minimum", "kind": "string", "optional": true},
+          {"name": "maximum", "kind": "string", "optional": true}
+        ]
+      }
+    ],
+    "capabilities": [],
+    "form_config": {"type": "object", "properties": {}},
+    "timeout_seconds": 300,
+    "retries": 0,
+    "targets": ["cloud"]
+  }
+}

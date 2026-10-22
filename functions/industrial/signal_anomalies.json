@@ -1,0 +1,57 @@
+{
+  "key": "signal_anomalies",
+  "name": "Anomalies on a signal",
+  "description": "How far each reading is from the readings just before it, in standard deviations (z-score), and whether that distance makes it an anomaly.",
+  "contract": {
+    "inputs": [
+      {
+        "name": "readings",
+        "type": "table",
+        "columns": [
+          {"name": "ts", "kind": "time"},
+          {"name_param": "column", "kind": "float"}
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "readings",
+        "type": "table",
+        "shape": "derived",
+        "derived_from": "readings",
+        "adds": [
+          {"name": "zscore", "kind": "float"},
+          {"name": "anomaly", "kind": "boolean"}
+        ]
+      }
+    ],
+    "capabilities": [],
+    "form_config": {
+      "type": "object",
+      "properties": {
+        "column": {
+          "type": "string",
+          "default": "value",
+          "description": "The column holding the signal's values."
+        },
+        "window": {
+          "type": "integer",
+          "default": 60,
+          "minimum": 5,
+          "maximum": 10000,
+          "description": "How many readings before each one make its normal."
+        },
+        "threshold": {
+          "type": "number",
+          "default": 3.0,
+          "minimum": 1,
+          "maximum": 10,
+          "description": "The z-score, either way, from which a reading is an anomaly."
+        }
+      }
+    },
+    "timeout_seconds": 300,
+    "retries": 0,
+    "targets": ["cloud", "edge"]
+  }
+}

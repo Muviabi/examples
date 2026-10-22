@@ -1,0 +1,44 @@
+{
+  "key": "stop_events",
+  "name": "Machine stops",
+  "description": "The machine's stops, one row each, from its running signal (true while it runs): when each stop began and ended and how many minutes it lasted. Stops shorter than the minimum are left out.",
+  "contract": {
+    "inputs": [
+      {
+        "name": "status",
+        "type": "table",
+        "columns": [
+          {"name": "ts", "kind": "time"},
+          {"name": "running", "kind": "boolean"}
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "stops",
+        "type": "table",
+        "shape": "fixed",
+        "columns": [
+          {"name": "start", "kind": "time"},
+          {"name": "end", "kind": "time"},
+          {"name": "minutes", "kind": "float"}
+        ]
+      }
+    ],
+    "capabilities": [],
+    "form_config": {
+      "type": "object",
+      "properties": {
+        "min_minutes": {
+          "type": "number",
+          "default": 1.0,
+          "minimum": 0,
+          "description": "Stops shorter than this many minutes are left out."
+        }
+      }
+    },
+    "timeout_seconds": 300,
+    "retries": 0,
+    "targets": ["cloud", "edge"]
+  }
+}
