@@ -1,8 +1,57 @@
-# Esempi di funzioni Muvia
+<p align="center">
+  <a href="https://muviabi.com/it">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/muvia-logo-dark.svg">
+      <img alt="Muvia" src="assets/muvia-logo.svg" width="280">
+    </picture>
+  </a>
+</p>
 
-Funzioni pronte per [Muvia](https://muviabi.com/it), ognuna con il suo contratto e un test che gira
-sul tuo computer. Importale in un progetto, usale così come sono in un flusso, o parti da una per
-scrivere la tua. [Read in English](README.md).
+<p align="center">
+  <b>Dai dati alle decisioni. In un'unica piattaforma.</b><br>
+  BI, AI e machine learning per i dati dell'azienda, IoT industriale per il campo.
+</p>
+
+<p align="center">
+  <a href="https://github.com/Muviabi/examples/actions/workflows/test.yml"><img alt="Test" src="https://github.com/Muviabi/examples/actions/workflows/test.yml/badge.svg"></a>
+  <a href="LICENSE"><img alt="Licenza MIT" src="https://img.shields.io/badge/licenza-MIT-0EA5AE"></a>
+  <img alt="Python 3.14" src="https://img.shields.io/badge/python-3.14-0EA5AE">
+  <img alt="13 funzioni" src="https://img.shields.io/badge/funzioni-13-0EA5AE">
+</p>
+
+<p align="center">
+  <a href="https://muviabi.com/it">Sito</a> ·
+  <a href="https://app-demo.muviabi.com/try">Provala da solo</a> ·
+  <a href="https://developers.muviabi.com">API per sviluppatori</a> ·
+  <a href="README.md">Read in English</a>
+</p>
+
+---
+
+## Muvia, in un minuto
+
+Muvia porta in un unico posto ERP, CRM, database, file e macchine, e risponde dove lavori già: in un
+cruscotto, nel report del lunedì, in un allarme o nell'assistente AI che usi ogni giorno. Ogni
+risposta mostra la query che l'ha prodotta.
+
+- **Collega.** Carichi un file o colleghi un database, un'applicazione o una macchina. Muvia copia
+  solo le righe nuove e i tuoi sistemi restano come sono.
+- **Modella.** Ogni numero vive in un dataset con campi stabili, e la provenienza mostra da dove
+  arriva, dalla fonte al report.
+- **Analizza.** In SQL, nei notebook, in Python, con i predittori, o chiedendo ad Athena,
+  l'assistente di Muvia.
+- **Agisci.** Cruscotti, report PDF a orario, allarmi con un responsabile, API REST e webhook
+  firmati.
+
+## Dove entrano queste funzioni
+
+Quando l'SQL non basta scrivi una funzione Python. Prende una tabella e restituisce una tabella, e
+un flusso la esegue a orario sui dati del progetto. Con Muvia Industrial la stessa funzione gira
+anche sul nodo edge accanto alla macchina, prima che i dati lascino lo stabilimento.
+
+Qui ne trovi tredici pronte, dall'anzianità dei crediti all'OEE, ognuna con il suo contratto e un
+test che gira sul tuo computer. Importale in un progetto, usale così come sono in un flusso, o
+parti da una per scrivere la tua.
 
 | Tema | Funzione | Cosa fa |
 | --- | --- | --- |
@@ -89,6 +138,11 @@ di `ctx` che richiedono una capacità (notifiche, asset, documenti, il modello A
 Idee e correzioni sono benvenute. Un nuovo esempio è una coppia di file in `functions/<tema>/` e un
 test in `tests/test_<tema>.py` con righe abbastanza poche da controllarle a mano; `uv run pytest`
 deve passare.
+
+## Prova Muvia
+
+Muvia non è open source; questi esempi sì. Per vederli al lavoro sui tuoi dati,
+[provala da solo](https://app-demo.muviabi.com/try) o [prenota una demo](https://muviabi.com/it/contact).
 
 ## Licenza
 
